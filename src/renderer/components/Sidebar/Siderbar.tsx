@@ -21,6 +21,13 @@ const Sidebar = () => {
         <img src={logo} alt="logo" className="logo" />
         {extended && <h4>Valor</h4>}
       </div>
+      <ul>
+        <li className="tab" onClick={() => navigate('/champion/Aatrox')}>
+          {extended ? 'Tier List' : 'TL'}
+        </li>
+        <li className="tab">{extended ? 'Champions' : 'CP'}</li>
+        <li className="tab">{extended ? 'Items' : 'IM'}</li>
+      </ul>
     </div>
   );
 };
