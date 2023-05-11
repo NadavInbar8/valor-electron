@@ -1,4 +1,5 @@
 .champion {
+  position: relative;
   padding: 25px 150px 25px 150px;
   display: grid;
   grid-template-columns: 1fr;
@@ -13,7 +14,25 @@
     'champion-content';
 }
 
+.bg-image {
+  left: 0;
+  top: 50px;
+  position: fixed;
+  background-repeat: no-repeat;
+  height: 100vh;
+  width: 100vw;
+  z-index: 0;
+
+  // transform: rotateY(180deg);
+  // min-height: 100vh;
+  // transition: 3s ease-in-out;
+  // border-radius: 0 0 35% 35%;
+  mask-image: linear-gradient(rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+  -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 0.3) 50%, transparent 100%);
+}
+
 .champion-header {
+  z-index: 1;
   grid-area: champion-header;
   display: flex;
   align-items: center;
@@ -58,6 +77,8 @@
 }
 
 .champion-nav {
+  z-index: 1;
+
   grid-area: champion-nav;
   display: flex;
   justify-content: space-around;
@@ -71,5 +92,7 @@
 }
 
 .champion-content {
+  z-index: 1;
+
   grid-area: champion-content;
 }

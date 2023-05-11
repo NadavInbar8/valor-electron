@@ -11,6 +11,7 @@ const Champion: React.FC<iChampionProps> = () => {
   const { championName } = useParams();
   const [champion, setChampion] = useState<Champion>();
   const [squareImg, setSquareImg] = useState<string>('');
+  const [backgroundImg, setBackgroundImg] = useState<string>('');
 
   useEffect(() => {
     if (championName) {
@@ -23,11 +24,18 @@ const Champion: React.FC<iChampionProps> = () => {
       setSquareImg(
         `http://ddragon.leagueoflegends.com/cdn/13.9.1/img/champion/${championName}.png`
       );
+      setBackgroundImg(
+        `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_0.jpg`
+      );
     }
   }, [championName]);
 
   return champion ? (
     <div className="champion">
+      <div className="bg-image">
+        <img src={backgroundImg} alt="bg" />
+      </div>
+      <div className="bg-overlay"></div>
       <div className="champion-header">
         <div className="img-container">
           <img src={squareImg} alt="square img" className="squareImg" />
@@ -47,7 +55,7 @@ const Champion: React.FC<iChampionProps> = () => {
         >
           Overview
         </Link>
-        <Link to={`/champion/${championName}/build`} className="champion-tab">
+        <Link to={`/champion/${championName}/builds`} className="champion-tab">
           Build
         </Link>
         <Link to={`/champion/${championName}/runes`} className="champion-tab">
