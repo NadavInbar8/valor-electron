@@ -20,7 +20,7 @@ const Dashboard = () => {
         <img src={logo} alt="logo" className="logo" />
         <h1>Valor</h1>
       </div>
-      <div className="bot-section">
+      <form onSubmit={handleSearch} className="bot-section">
         <input
           type="text"
           className="dashboard-search"
@@ -35,7 +35,7 @@ const Dashboard = () => {
           className="search-btn"
           onClick={handleSearch}
         />
-      </div>
+      </form>
     </div>
   );
 };

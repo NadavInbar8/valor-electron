@@ -1,4 +1,75 @@
 .champion {
-  padding-left: 225px;
-  padding-top: 25px;
+  padding: 25px 150px 25px 150px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 0.2fr 0.3fr 2.5fr;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    'champion-header'
+    'champion-nav'
+    'champion-content';
+}
+
+.champion-header {
+  grid-area: champion-header;
+  display: flex;
+  align-items: center;
+  .squareImg {
+    margin-right: 10px;
+    height: 100px;
+  }
+
+  .champion-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-width: 0;
+  }
+  .champion-label {
+    margin-top: 0;
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    font-size: 36px;
+    white-space: nowrap;
+
+    .champion-name {
+      font-weight: 900;
+      margin-right: 12px;
+    }
+    .champion-title {
+      font-weight: bold;
+      color: #ab67ad;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+  .champion-header-row {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+}
+
+.champion-nav {
+  grid-area: champion-nav;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+
+  .champion-tab {
+    border: 1px solid purple;
+    padding: 4px 6px;
+    border-radius: 8px;
+  }
+}
+
+.champion-content {
+  grid-area: champion-content;
 }
