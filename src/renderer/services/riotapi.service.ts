@@ -1,12 +1,12 @@
 import axios from 'axios';
 
 const getChampion = async (championName: string) => {
-  //   const currChampion = await axios.get(
-  //     `http://localhost:4000/api/champions/${championName}`
-  //   );
   const currChampion = await axios.get(
-    `http://ddragon.leagueoflegends.com/cdn/13.9.1/data/en_US/champion/${championName}.json`
+    `http://localhost:4000/api/champions/${championName}`
   );
+  //   const currChampion = await axios.get(
+  //     `http://ddragon.leagueoflegends.com/cdn/13.9.1/data/en_US/champion/${championName}.json`
+  //   );
   console.log('currChampion', currChampion);
   return currChampion.data.data[championName];
 };

@@ -63,6 +63,7 @@ export interface Champion {
   };
   recommended: any;
   squareImage: string;
+  backgroundImage: string;
 }
 
 export interface ChampionSkin {
