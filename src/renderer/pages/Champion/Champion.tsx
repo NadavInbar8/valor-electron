@@ -4,6 +4,7 @@ import { riotAPIService } from 'renderer/services/riotapi.service';
 import { Champion } from '../../services/lol_interfaces';
 import React, { useEffect, useState } from 'react';
 import Loader from 'renderer/components/Loader/Loader';
+import navBorder from '../../../assets/Layer 1.svg';
 
 export interface iChampionProps {}
 
@@ -34,7 +35,6 @@ const Champion: React.FC<iChampionProps> = () => {
     <>
       <img src={champion.backgroundImage} alt="bg" className="bg-image" />
       <div className="champion">
-        <div className="bg-overlay"></div>
         <div className="champion-header">
           <div className="img-container">
             <img
@@ -52,33 +52,54 @@ const Champion: React.FC<iChampionProps> = () => {
           </div>
         </div>
         <div className="champion-nav">
-          <Link
-            to={`/champion/${championName}/overview`}
-            className="champion-tab"
-          >
-            Overview
-          </Link>
-          <Link
-            to={`/champion/${championName}/builds`}
-            className="champion-tab"
-          >
-            Build
-          </Link>
-          <Link to={`/champion/${championName}/runes`} className="champion-tab">
-            Runes
-          </Link>
-          <Link to={`/champion/${championName}/items`} className="champion-tab">
-            Items
-          </Link>
-          <Link
-            to={`/champion/${championName}/counters`}
-            className="champion-tab"
-          >
-            Counters
-          </Link>
-          <Link to={`/champion/${championName}/duos`} className="champion-tab">
-            Duos
-          </Link>
+          <div className="nav-item">
+            <Link
+              to={`/champion/${championName}/builds`}
+              className="champion-tab"
+            >
+              Build
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
+              to={`/champion/${championName}/overview`}
+              className="champion-tab"
+            >
+              Overview
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
+              to={`/champion/${championName}/runes`}
+              className="champion-tab"
+            >
+              Runes
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
+              to={`/champion/${championName}/items`}
+              className="champion-tab"
+            >
+              Items
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
+              to={`/champion/${championName}/counters`}
+              className="champion-tab"
+            >
+              Counters
+            </Link>
+          </div>
+          <div className="nav-item">
+            <Link
+              to={`/champion/${championName}/duos`}
+              className="champion-tab"
+            >
+              Duos
+            </Link>
+          </div>
         </div>
         <div className="champion-content">
           <Outlet />

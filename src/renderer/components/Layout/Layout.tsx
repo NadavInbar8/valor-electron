@@ -18,7 +18,7 @@ const Layout: React.FC<iLayoutProps> = () => {
         <Sidebar />
         <Outlet />
       </div>
-      <div className="layout-footer">footer</div>
+      {/* <div className="layout-footer">footer</div> */}
     </div>
   );
 };

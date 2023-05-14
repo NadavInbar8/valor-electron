@@ -7,27 +7,31 @@
   color: aliceblue;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.3fr 3.3fr 0.2fr;
+  // grid-template-rows: 0.3fr 3.3fr 0.2fr;
+  grid-template-rows: 0.2fr 3.5fr;
   gap: 0px 0px;
   grid-auto-flow: row;
   grid-template-areas:
     'layout-header '
-    'layout-content'
-    'layout-footer';
+    'layout-content';
+  // 'layout-footer';
 }
 
 .layout-header {
   grid-area: layout-header;
-  max-height: 60px;
+  min-height: 60px;
+  position: sticky;
+  z-index: 5;
 }
 
 .layout-content {
   grid-area: layout-content;
+  overflow-y: auto;
 }
 
-.layout-footer {
-  grid-area: layout-footer;
-}
+// .layout-footer {
+//   grid-area: layout-footer;
+// }
 
 .layout-sidebar {
   grid-area: layout-sidebar;
