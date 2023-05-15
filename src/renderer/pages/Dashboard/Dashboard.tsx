@@ -11,7 +11,9 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleSearch = async () => {
-    navigate(`/champion/${search.charAt(0).toUpperCase() + search.slice(1)}`);
+    navigate(
+      `/champion/${search.charAt(0).toUpperCase() + search.slice(1)}/builds`
+    );
   };
 
   return (

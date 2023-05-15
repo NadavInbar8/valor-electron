@@ -22,7 +22,7 @@ const Sidebar = () => {
         {extended && <h4>Valor</h4>}
       </div>
       <ul>
-        <li className="tab" onClick={() => navigate('/champion/Aatrox')}>
+        <li className="tab" onClick={() => navigate('/champion/Aatrox/builds')}>
           {extended ? 'Tier List' : 'TL'}
         </li>
         <li className="tab">{extended ? 'Champions' : 'CP'}</li>

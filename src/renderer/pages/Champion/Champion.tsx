@@ -33,9 +33,9 @@ const Champion: React.FC<iChampionProps> = () => {
 
   return champion ? (
     <>
-      <img src={champion.backgroundImage} alt="bg" className="bg-image" />
       <div className="champion">
         <div className="champion-header">
+          <img src={champion.backgroundImage} alt="bg" className="bg-image" />
           <div className="img-container">
             <img
               src={champion.squareImage}

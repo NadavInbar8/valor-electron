@@ -1,5 +1,5 @@
 // @import url('../../../../assets/variables.scss');
-// @import url('../../../../assets/variables.scss');
+@import url('../../../../assets/variables.scss');
 
 .builds {
   margin: 10px 0px;
@@ -37,7 +37,7 @@
     align-items: center;
     border-radius: 6px;
     height: 100%;
-    background-color: rgba(107, 43, 52, 0.8); // noxsus
+    background-color: #1e282d; // noxsus
     margin: 0px 16px;
     padding: 0px 16px;
   }
@@ -76,16 +76,16 @@
       cursor: pointer;
       border-radius: 6px;
       &:hover {
-        background-color: rgb(172, 90, 101);
+        background-color: #1e282d;
       }
       &.selected {
-        background-color: rgb(164, 65, 78);
+        background-color: #3c3c41;
       }
     }
   }
 
   .divisions {
-    border-radius: 10px;
+    margin: 0px 8px;
     * {
       color: white;
     }
@@ -96,44 +96,26 @@
   }
 
   .matchup-filter {
-    padding: 0;
-    input {
-      border-radius: 6px;
-      padding: 0px 6px;
-      height: 100%;
-      width: 100%;
-      color: white;
-      outline: none;
-      border: none;
-      background-color: rgb(128, 51, 61);
-    }
-    ::placeholder {
+    margin: 0px 8px;
+    * {
       color: white;
     }
-  }
-
-  .dropdown {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-  }
-
-  .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #000000;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    padding: 12px 16px;
-    z-index: 1;
-
-    li {
-      list-style: none;
-      cursor: pointer;
+    img {
+      border-radius: 0;
+      height: 20px;
+      margin-right: 8px;
     }
   }
 
-  .dropdown:hover .dropdown-content {
-    display: block;
+  .queue-type {
+    margin: 0px 8px;
+    * {
+      color: white;
+    }
+    img {
+      height: 20px;
+      margin-right: 8px;
+    }
   }
 }
 

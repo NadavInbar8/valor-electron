@@ -13,24 +13,32 @@
     'champion-nav'
     'champion-content';
   height: 100%;
+  background-color: #0a323c;
 }
 
 .bg-image {
-  left: 0;
+  right: 0;
   top: 50px;
   position: fixed;
-  background-repeat: no-repeat;
-  height: 100vh;
-  width: 100vw;
+  height: 50%;
+  background-image: inherit;
+  background-position: center;
+  // background-repeat: no-repeat;
   z-index: 0;
-
-  // transform: rotateY(180deg);
-  // min-height: 100vh;
-  // transition: 3s ease-in-out;
-  // border-radius: 0 0 35% 35%;
-  opacity: 0.4;
-  // mask-image: linear-gradient(rgba(0, 0, 0, 0.2) 50%, transparent 100%);
-  // -webkit-mask-image: linear-gradient(rgba(0, 0, 0, 0.1) 50%, transparent 100%);
+  mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(0, 0, 0, 0.5)),
+    to(rgba(0, 0, 0, 0))
+  );
+  -webkit-mask-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(rgba(0, 0, 0, 0.5)),
+    to(rgba(0, 0, 0, 0))
+  );
 }
 
 .champion-header {
@@ -39,17 +47,23 @@
   display: flex;
   align-items: center;
   .squareImg {
+    z-index: 1;
+
     margin-right: 10px;
     height: 100px;
   }
 
   .champion-info {
+    z-index: 1;
+
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-width: 0;
   }
   .champion-label {
+    z-index: 1;
+
     margin-top: 0;
     margin-bottom: 0;
     display: flex;
