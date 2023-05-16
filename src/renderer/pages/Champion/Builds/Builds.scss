@@ -121,10 +121,49 @@
 
 .stats {
   grid-area: stats;
+  display: flex;
+  justify-content: center;
+  margin: 10px 0px;
+  div {
+    // border: 1px solid red;
+    width: 15%;
+    padding: 8px 0px;
+    border-left: 1px solid #3c3c41;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e282d;
+  }
 }
 
 .matchups {
   grid-area: matchups;
+  display: flex;
+  flex-direction: column;
+  background-color: #1e282d;
+  .matchups-title {
+    padding: 4px;
+    .matchups-title-main {
+      margin-right: 4px;
+    }
+    .matchups-title-second {
+      color: #d1d1d1;
+    }
+  }
+  .matchups-cards {
+    display: flex;
+    flex-direction: row;
+  }
+  .matchup-card {
+    display: flex;
+    flex-direction: column;
+  }
+  img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+  }
 }
 
 .runes-summoners {

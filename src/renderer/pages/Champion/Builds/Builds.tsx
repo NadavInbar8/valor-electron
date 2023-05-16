@@ -17,13 +17,16 @@ import silverSvg from 'assets/silver.svg';
 import bronzeSvg from 'assets/bronze.svg';
 import ironSvg from 'assets/iron.svg';
 import { ReactElement, useContext, useEffect, useState } from 'react';
-import { riotAPIService } from 'renderer/services/riotapi.service';
-import { ChampionsContext } from 'renderer/App';
+import { ChampionsContext, ThemeContext } from 'renderer/App';
+import { ChampionContext } from '../Champion';
+import { Matchups } from 'renderer/services/lol_interfaces';
 
 const animatedComponents = makeAnimated();
 
 const Builds: React.FC = () => {
   const { championsList, updateChampionsList } = useContext(ChampionsContext);
+  const { theme, updateTheme } = useContext(ThemeContext);
+  const { champion, updateChampion } = useContext(ChampionContext);
   const [matchup, setMatchup] = useState<string>('');
   const [selectedRole, setSelectedRole] = useState<string>('');
   const [matchupList, setMatchupList] = useState<
@@ -184,6 +187,7 @@ const Builds: React.FC = () => {
   ];
 
   useEffect(() => {
+    // console.log('champion', champion);
     makeMatchupPicker();
   }, []);
 
@@ -242,8 +246,55 @@ const Builds: React.FC = () => {
           />
         </div>
       </div>
-      <div className="stats">stats %%%</div>
-      <div className="matchups">match-ups</div>
+      <div className="stats">
+        <div className="tier">
+          <span>{champion.tier}</span>
+          <span>Tier</span>
+        </div>
+        <div className="winrate">
+          <span>{champion.winRate}%</span>
+          <span>Win Rate</span>
+        </div>
+        <div className="pickrate">
+          <span>{champion.pickRate}%</span>
+          <span>Pick Rate</span>
+        </div>
+        <div className="banrate">
+          <span>{champion.banRate}%</span>
+          <span>Ban Rate</span>
+        </div>
+        <div className="matches">
+          <span>
+            {String(champion.matches).replace(/(.)(?=(\d{3})+$)/g, '$1,')}
+          </span>
+          <span>Matches</span>
+        </div>
+      </div>
+      <div className="matchups">
+        <div
+          className="matchups-title"
+          style={{ borderLeft: `2px solid ${theme.border}` }}
+        >
+          <span className="matchups-title-main">Hard Matchups</span>
+          <span className="matchups-title-second">
+            Champions that counter {champion.name}
+          </span>
+        </div>
+        <div className="matchups-cards">
+          {champion.matchups.map((mu: Matchups) => {
+            console.log('mu', mu);
+            console.log('championsList', championsList);
+            return (
+              <div className="matchup-card">
+                <img src={championsList[mu.name].squareImage} />
+                <span>{mu.name}</span>
+                <span>{mu.winrate}</span>
+                <span>{mu.matches}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
       <div className="runes-summoners">runes and summoners</div>
       <div className="items">items</div>
       <div className="skills">skills</div>

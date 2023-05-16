@@ -64,8 +64,19 @@ export interface Champion {
   recommended: any;
   squareImage: string;
   backgroundImage: string;
+  tier: string;
+  winRate: number;
+  pickRate: number;
+  banRate: number;
+  matches: number;
+  matchups: Matchups[];
 }
 
+export interface Matchups {
+  name: string;
+  winrate: number;
+  matches: number;
+}
 export interface ChampionSkin {
   id: string;
   num: number;

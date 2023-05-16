@@ -13,7 +13,7 @@
     'champion-nav'
     'champion-content';
   height: 100%;
-  background-color: #0a323c;
+  // background-color: #0a323c;
 }
 
 .bg-image {
@@ -23,23 +23,37 @@
   height: 50%;
   background-image: inherit;
   background-position: center;
+  z-index: -2;
   // background-repeat: no-repeat;
-  z-index: 0;
-  mask-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(rgba(0, 0, 0, 0.5)),
-    to(rgba(0, 0, 0, 0))
-  );
-  -webkit-mask-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(rgba(0, 0, 0, 0.5)),
-    to(rgba(0, 0, 0, 0))
-  );
+  // mask-image: -webkit-gradient(
+  //   linear,
+  //   left top,
+  //   left bottom,
+  //   from(rgba(0, 0, 0, 0.5)),
+  //   to(rgba(0, 0, 0, 0))
+  // );
+  // -webkit-mask-image: -webkit-gradient(
+  //   linear,
+  //   left top,
+  //   left bottom,
+  //   from(rgba(0, 0, 0, 0.5)),
+  //   to(rgba(0, 0, 0, 0))
+  // );
 }
+// .bg-overlay {
+//   left: 0;
+//   bottom: 0;
+//   position: absolute;
+//   max-width: 100%;
+//   min-width: 100%;
+//   height: 100%;
+//   background: linear-gradient(
+//     150deg,
+//     rgba(16, 21, 39, 0.1) 0%,
+//     rgb(0, 0, 0, 0.6) 80%
+//   );
+//   z-index: -1;
+// }
 
 .champion-header {
   z-index: 1;

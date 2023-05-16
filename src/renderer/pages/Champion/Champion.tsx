@@ -1,15 +1,20 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useOutletContext, useParams } from 'react-router-dom';
 import './Champion.scss';
 import { riotAPIService } from 'renderer/services/riotapi.service';
 import { Champion } from '../../services/lol_interfaces';
-import React, { useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import Loader from 'renderer/components/Loader/Loader';
 import navBorder from '../../../assets/Layer 1.svg';
+import { ThemeContext } from 'renderer/App';
+import { iChampionContext } from 'renderer/services/context_interfaces';
 
 export interface iChampionProps {}
 
+export const ChampionContext = createContext<iChampionContext>(null as any);
+
 const Champion: React.FC<iChampionProps> = () => {
   const { championName } = useParams();
+  const { theme, updateTheme } = useContext(ThemeContext);
   const [champion, setChampion] = useState<Champion>();
   const [squareImg, setSquareImg] = useState<string>('');
   const [backgroundImg, setBackgroundImg] = useState<string>('');
@@ -19,6 +24,7 @@ const Champion: React.FC<iChampionProps> = () => {
       riotAPIService.getChampion(championName).then((res) => {
         console.log('res', res);
         // temp = { ...res };
+        updateTheme(res.region);
         console.log(res);
         setChampion(res);
       });
@@ -31,11 +37,26 @@ const Champion: React.FC<iChampionProps> = () => {
     }
   }, [championName]);
 
+  const updateChampion = (ch: Champion) => {
+    setChampion(ch);
+  };
+
   return champion ? (
     <>
-      <div className="champion">
+      <div className="champion" style={{ backgroundColor: theme.background }}>
         <div className="champion-header">
-          <img src={champion.backgroundImage} alt="bg" className="bg-image" />
+          <img
+            style={{
+              // opacity: 0.6,
+              // maskImage: ` -webkit-gradient(linear,left top,left bottom,from(rgba(0, 0, 0, 0.1)),to(${theme.background}))`,
+              WebkitMask: ` -webkit-gradient((${theme.background}) 50% ,transparent 100%)`,
+              // WebkitMask: ` linear-gradient(${theme.background} 50%, transparent 100%)`,
+            }}
+            src={champion.backgroundImage}
+            alt="bg"
+            className="bg-image"
+          />
+          {/* <div className="bg-overlay"></div> */}
           <div className="img-container">
             <img
               src={champion.squareImage}
@@ -102,7 +123,9 @@ const Champion: React.FC<iChampionProps> = () => {
           </div>
         </div>
         <div className="champion-content">
-          <Outlet />
+          <ChampionContext.Provider value={{ champion, updateChampion }}>
+            <Outlet />
+          </ChampionContext.Provider>
         </div>
       </div>
     </>
