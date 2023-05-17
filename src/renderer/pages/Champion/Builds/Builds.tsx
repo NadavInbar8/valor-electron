@@ -1,5 +1,3 @@
-import makeAnimated from 'react-select/animated';
-import Select from 'react-select';
 import './Builds.scss';
 import filterSvg from 'assets/filter.svg';
 import topSvg from 'assets/top.svg';
@@ -20,8 +18,6 @@ import { ReactElement, useContext, useEffect, useState } from 'react';
 import { ChampionsContext, ThemeContext } from 'renderer/App';
 import { ChampionContext } from '../Champion';
 import { Matchups } from 'renderer/services/lol_interfaces';
-
-const animatedComponents = makeAnimated();
 
 const Builds: React.FC = () => {
   const { championsList, updateChampionsList } = useContext(ChampionsContext);
@@ -222,28 +218,28 @@ const Builds: React.FC = () => {
           <img src={supSvg} alt="support" />
         </div>
         <div className="divisions">
-          <Select
+          {/* <Select
             isSearchable={false}
             styles={customStyles}
             closeMenuOnSelect={true}
             options={divisions}
-          />
+          /> */}
         </div>
         <div className="matchup-filter ">
-          <Select
+          {/* <Select
             placeholder="vs. Champion..."
             styles={customStyles}
             closeMenuOnSelect={true}
             options={matchupList}
-          />
+          /> */}
         </div>
         <div className="queue-type">
-          <Select
+          {/* <Select
             placeholder="Queue Type"
             styles={customStyles}
             closeMenuOnSelect={true}
             options={queueTypes}
-          />
+          /> */}
         </div>
       </div>
       <div className="stats">
