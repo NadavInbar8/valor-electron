@@ -19,6 +19,15 @@ const Champion: React.FC<iChampionProps> = () => {
   const [squareImg, setSquareImg] = useState<string>('');
   const [backgroundImg, setBackgroundImg] = useState<string>('');
 
+  const pages = [
+    { title: 'Build', link: '/builds' },
+    { title: 'Overview', link: '/overview' },
+    { title: 'Runes', link: '/runes' },
+    { title: 'Items', link: '/items' },
+    { title: 'Counters', link: '/counters' },
+    { title: 'Duos', link: '/duos' },
+  ];
+
   useEffect(() => {
     if (championName) {
       riotAPIService.getChampion(championName).then((res) => {
@@ -73,54 +82,16 @@ const Champion: React.FC<iChampionProps> = () => {
           </div>
         </div>
         <div className="champion-nav">
-          <div className="nav-item">
-            <Link
-              to={`/champion/${championName}/builds`}
-              className="champion-tab"
-            >
-              Build
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link
-              to={`/champion/${championName}/overview`}
-              className="champion-tab"
-            >
-              Overview
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link
-              to={`/champion/${championName}/runes`}
-              className="champion-tab"
-            >
-              Runes
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link
-              to={`/champion/${championName}/items`}
-              className="champion-tab"
-            >
-              Items
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link
-              to={`/champion/${championName}/counters`}
-              className="champion-tab"
-            >
-              Counters
-            </Link>
-          </div>
-          <div className="nav-item">
-            <Link
-              to={`/champion/${championName}/duos`}
-              className="champion-tab"
-            >
-              Duos
-            </Link>
-          </div>
+          {pages.map((page) => (
+            <div className="nav-item">
+              <Link
+                to={`/champion/${championName}${page.link}`}
+                className="champion-tab"
+              >
+                {page.title}
+              </Link>
+            </div>
+          ))}
         </div>
         <div className="champion-content">
           <ChampionContext.Provider value={{ champion, updateChampion }}>
