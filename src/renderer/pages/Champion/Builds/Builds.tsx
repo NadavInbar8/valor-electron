@@ -18,6 +18,7 @@ import { ReactElement, useContext, useEffect, useState } from 'react';
 import { ChampionsContext, ThemeContext } from 'renderer/App';
 import { ChampionContext } from '../Champion';
 import { Matchups } from 'renderer/services/lol_interfaces';
+import { Select, MenuItem  } from '@mui/material';
 
 const Builds: React.FC = () => {
   const { championsList, updateChampionsList } = useContext(ChampionsContext);
@@ -31,86 +32,133 @@ const Builds: React.FC = () => {
   const divisions = [
     {
       value: 'challenger',
-      label: (
-        <div className="flex-ai-center">
-          <img src={challengerSvg} alt="challenger" />
-          <span>Challenger</span>
-        </div>
-      ),
+      label:'Challenger',
+      img: challengerSvg
     },
     {
       value: 'grandmaster',
-      label: (
-        <div className="flex-ai-center">
-          <img src={grandMasterSvg} alt="GM" />
-          <span>Grandmaster</span>
-        </div>
-      ),
+      label:'Grandmaster',
+      img: grandMasterSvg
     },
     {
       value: 'master',
-      label: (
-        <div className="flex-ai-center">
-          <img src={masterSvg} alt="GM" />
-          <span>Master</span>
-        </div>
-      ),
+      label:'Master',
+      img: masterSvg
     },
     {
       value: 'diamond',
-      label: (
-        <div className="flex-ai-center">
-          <img src={diamondSvg} alt="GM" />
-          <span>Diamond</span>
-        </div>
-      ),
+      label:'Diamond',
+      img: diamondSvg
     },
     {
       value: 'platinum',
-      label: (
-        <div className="flex-ai-center">
-          <img src={platSvg} alt="GM" />
-          <span>Platinum</span>
-        </div>
-      ),
+      label:'Platinum',
+      img: platSvg
     },
     {
       value: 'gold',
-      label: (
-        <div className="flex-ai-center">
-          <img src={goldSvg} alt="GM" />
-          <span>Gold</span>
-        </div>
-      ),
+      label:'Gold',
+      img: goldSvg
     },
     {
       value: 'silver',
-      label: (
-        <div className="flex-ai-center">
-          <img src={silverSvg} alt="GM" />
-          <span>Silver</span>
-        </div>
-      ),
+      label:'Silver',
+      img: silverSvg
     },
     {
       value: 'bronze',
-      label: (
-        <div className="flex-ai-center">
-          <img src={bronzeSvg} alt="GM" />
-          <span>Bronze</span>
-        </div>
-      ),
+      label:'Bronze',
+      img: bronzeSvg
     },
     {
       value: 'iron',
-      label: (
-        <div className="flex-ai-center">
-          <img src={ironSvg} alt="GM" />
-          <span>Iron</span>
-        </div>
-      ),
+      label:'Iron',
+      img: ironSvg
     },
   ];
+  // const divisions = [
+  //   {
+  //     value: 'challenger',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={challengerSvg} alt="challenger" />
+  //         <span>Challenger</span>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     value: 'grandmaster',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={grandMasterSvg} alt="GM" />
+  //         <span>Grandmaster</span>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     value: 'master',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={masterSvg} alt="GM" />
+  //         <span>Master</span>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     value: 'diamond',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={diamondSvg} alt="GM" />
+  //         <span>Diamond</span>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     value: 'platinum',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={platSvg} alt="GM" />
+  //         <span>Platinum</span>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     value: 'gold',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={goldSvg} alt="GM" />
+  //         <span>Gold</span>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     value: 'silver',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={silverSvg} alt="GM" />
+  //         <span>Silver</span>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     value: 'bronze',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={bronzeSvg} alt="GM" />
+  //         <span>Bronze</span>
+  //       </div>
+  //     ),
+  //   },
+  //   {
+  //     value: 'iron',
+  //     label: (
+  //       <div className="flex-ai-center">
+  //         <img src={ironSvg} alt="GM" />
+  //         <span>Iron</span>
+  //       </div>
+  //     ),
+  //   },
+  // ];
   const customStyles: any = {
     indicatorsContainer: (base: any, state: any) => ({
       ...base,
@@ -224,6 +272,9 @@ const Builds: React.FC = () => {
             closeMenuOnSelect={true}
             options={divisions}
           /> */}
+          <Select defaultValue={divisions[4]}>
+            {divisions.map(d => <MenuItem value={d.value}><img src={d.img} /> {d.label}</MenuItem>)}
+          </Select>
         </div>
         <div className="matchup-filter ">
           {/* <Select

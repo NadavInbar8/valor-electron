@@ -1,8 +1,8 @@
 import { Champion } from './lol_interfaces';
 
 export interface ChampionsListContext {
-  championsList: Champion[];
-  updateChampionsList: (list: Champion[]) => void;
+  championsList: {[key:string]:Champion};
+  updateChampionsList: (list: {[key:string]:Champion}) => void;
 }
 export interface iChampionContext {
   champion: Champion;

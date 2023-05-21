@@ -22,7 +22,6 @@ export const ChampionsContext = createContext<ChampionsListContext>(
 // $cp1-d: #131920;
 // $cp1: #1f2833;
 // $cp1-l: #2b3642;
-
 // $cp1-t-d: #2e3a49bb;
 // $cp1-t: #1f2833bb;
 // $cp1-t-l: #131920bb;
@@ -60,6 +59,7 @@ export const ChampionsContext = createContext<ChampionsListContext>(
 // --pz-cp5-l: #c29941;
 // --pz-cp5: #c28c17;
 // --pz-cp5-d: #9e700e;
+
 export const themes: any = {
   Default: {
     background: '#27384f',
@@ -126,14 +126,14 @@ export const themes: any = {
 export const ThemeContext = createContext(themes.Default);
 
 export default function App() {
-  const [championsList, setChampionsList] = useState<Champion[]>([]);
+  const [championsList, setChampionsList] = useState<{[key:string]:Champion}>({});
   const [theme, setTheme] = useState<{
     border: string;
     border_l: string;
     background: string;
   }>(themes.Default);
 
-  const updateChampionsList = (list: Champion[]) => {
+  const updateChampionsList = (list: {[key:string]:Champion}) => {
     setChampionsList(list);
   };
 
