@@ -18,7 +18,13 @@ import { ReactElement, useContext, useEffect, useState } from 'react';
 import { ChampionsContext, ThemeContext } from 'renderer/App';
 import { ChampionContext } from '../Champion';
 import { Matchups } from 'renderer/services/lol_interfaces';
-import { Select, MenuItem  } from '@mui/material';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
 
 const Builds: React.FC = () => {
   const { championsList, updateChampionsList } = useContext(ChampionsContext);
@@ -27,53 +33,54 @@ const Builds: React.FC = () => {
   const [matchup, setMatchup] = useState<string>('');
   const [selectedRole, setSelectedRole] = useState<string>('');
   const [matchupList, setMatchupList] = useState<
-    { value: string; label: ReactElement }[]
+    { value: string; label: string; img: string }[]
   >([]);
+  const [division, setDivision] = useState('');
   const divisions = [
     {
       value: 'challenger',
-      label:'Challenger',
-      img: challengerSvg
+      label: 'Challenger',
+      img: challengerSvg,
     },
     {
       value: 'grandmaster',
-      label:'Grandmaster',
-      img: grandMasterSvg
+      label: 'Grandmaster',
+      img: grandMasterSvg,
     },
     {
       value: 'master',
-      label:'Master',
-      img: masterSvg
+      label: 'Master',
+      img: masterSvg,
     },
     {
       value: 'diamond',
-      label:'Diamond',
-      img: diamondSvg
+      label: 'Diamond',
+      img: diamondSvg,
     },
     {
       value: 'platinum',
-      label:'Platinum',
-      img: platSvg
+      label: 'Platinum',
+      img: platSvg,
     },
     {
       value: 'gold',
-      label:'Gold',
-      img: goldSvg
+      label: 'Gold',
+      img: goldSvg,
     },
     {
       value: 'silver',
-      label:'Silver',
-      img: silverSvg
+      label: 'Silver',
+      img: silverSvg,
     },
     {
       value: 'bronze',
-      label:'Bronze',
-      img: bronzeSvg
+      label: 'Bronze',
+      img: bronzeSvg,
     },
     {
       value: 'iron',
-      label:'Iron',
-      img: ironSvg
+      label: 'Iron',
+      img: ironSvg,
     },
   ];
   // const divisions = [
@@ -239,16 +246,19 @@ const Builds: React.FC = () => {
     const temp = Object.values(championsList).map((ch) => {
       return {
         value: ch.name,
-        label: (
-          <>
-            <img src={ch.squareImage} />
-            <span>{ch.name}</span>
-          </>
-        ),
+        label: ch.name,
+        img: ch.squareImage,
       };
     });
     console.log(temp);
     setMatchupList(temp);
+  };
+
+  const handleDivisionChange = (event: SelectChangeEvent) => {
+    setDivision(event.target.value as string);
+  };
+  const handleMatchupChange = (event: SelectChangeEvent) => {
+    setMatchup(event.target.value as string);
   };
 
   return (
@@ -266,23 +276,85 @@ const Builds: React.FC = () => {
           <img src={supSvg} alt="support" />
         </div>
         <div className="divisions">
-          {/* <Select
-            isSearchable={false}
-            styles={customStyles}
-            closeMenuOnSelect={true}
-            options={divisions}
-          /> */}
-          <Select defaultValue={divisions[4]}>
-            {divisions.map(d => <MenuItem value={d.value}><img src={d.img} /> {d.label}</MenuItem>)}
-          </Select>
+          <FormControl fullWidth>
+            <InputLabel id="select-division">Division</InputLabel>
+            <Select
+              labelId="select-division"
+              id="select-division"
+              value={division}
+              label="Division"
+              onChange={handleDivisionChange}
+              size="small"
+            >
+              {divisions.map((d) => (
+                <MenuItem
+                  value={d.value}
+                  style={{ display: 'flex', alignItems: 'center' }}
+                >
+                  <img
+                    src={d.img}
+                    style={{ height: '20px', marginRight: '8px' }}
+                  />
+                  {d.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
         </div>
         <div className="matchup-filter ">
-          {/* <Select
-            placeholder="vs. Champion..."
-            styles={customStyles}
-            closeMenuOnSelect={true}
+          {/* <FormControl fullWidth>
+            <InputLabel id="select-matchup">vs. Champion...</InputLabel>
+            <Select
+              labelId="select-matchup"
+              id="select-matchup"
+              value={matchup}
+              label="VS"
+              onChange={handleMatchupChange}
+              size="small"
+              autoWidth
+              className='mui-select'
+            >
+              {matchupList.map((d) => (
+                <MenuItem
+                  value={d.value}
+                  style={{ display: 'flex', alignItems: 'center' }}
+                >
+                  <img
+                    src={d.img}
+                    style={{ height: '20px', marginRight: '8px' }}
+                  />
+                  {d.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl> */}
+          <Autocomplete
+            disablePortal
+            id="select-matchup"
             options={matchupList}
-          /> */}
+            sx={{ width: '200px', color: '#fff' }}
+            renderOption={(props, option) => (
+              <Box
+                component="li"
+                sx={{ '& > img': { mr: 2, flexShrink: 0 } }}
+                {...props}
+              >
+                <img loading="lazy" width="20" src={option.img} />
+                <span style={{ color: 'black' }}>{option.label}</span>
+              </Box>
+            )}
+            renderInput={(params) => (
+              <TextField
+                sx={{ color: '#fff' }}
+                {...params}
+                label="Choose a champion"
+                inputProps={{
+                  ...params.inputProps,
+                  autoComplete: 'new-password', // disable autocomplete and autofill
+                }}
+              />
+            )}
+          />
         </div>
         <div className="queue-type">
           {/* <Select
